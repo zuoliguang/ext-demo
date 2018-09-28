@@ -4,9 +4,10 @@
  * @Author: zuoliguang
  * @Date:   2018-09-27 10:33:28
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-27 15:43:43
+ * @Last Modified time: 2018-09-28 14:58:38
  */
 
+// vim ~/.bashrc
 // 结合当前环境配置zookeeper和kafka的快捷键以php的调用方式
 // 启动zookeeper 时需要指定 zookeeper 的配置文件
 // alias zkstart='/home/softwore/kafka_2.10-0.9.0.0/bin/zookeeper-server-start.sh /home/softwore/kafka_2.10-0.9.0.0/config/zookeeper.properties'
