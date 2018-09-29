@@ -12,7 +12,7 @@
  * @Author: zuoliguang
  * @Date:   2018-09-29 08:46:51
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-29 15:33:48
+ * @Last Modified time: 2018-09-29 16:15:54
  */
 
 class Redis_model
@@ -739,6 +739,35 @@ class Redis_model
         return $this->redis->srem($key, $value);
     }
      
+    /************* 消息发布/订阅 *****************/
+
+    /**
+     * 向频道中发送消息
+     * 
+     * @param  [type] $channel [description]
+     * @param  string $message [description]
+     * @return [type]          [description]
+     */
+    public function publish($channel, $message='')
+    {
+        return $this->redis->publish($channel, $message);
+    }
+
+    /**
+     * 订阅消息处理
+     * 
+     * @param  array  $channels [description]
+     * @return [type]           [description]
+     */
+    public function subscribe($channels = array())
+    {
+        $this->redis->subscribe($channels, function($redis, $chan, $msg){
+            var_dump($redis);
+            var_dump($chan);
+            var_dump($msg);
+        });
+    }
+
     /*************redis管理操作命令*****************/
      
     /**

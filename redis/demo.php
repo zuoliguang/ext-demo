@@ -4,7 +4,7 @@
  * @Author: zuoliguang
  * @Date:   2018-09-29 08:47:04
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-29 15:44:07
+ * @Last Modified time: 2018-09-29 16:26:20
  */
 
 // 报错机制
@@ -157,6 +157,8 @@ print_r($zlist);*/
 
 /**************************** list 函数操作及使用场景 *****************************/
 
+
+
 // $key = 'list_data';
 
 // $value = 'data_';
@@ -175,6 +177,33 @@ print_r($zlist);*/
 
 
 
+/**************************** 消息发布/订阅 *****************************/
 
 
 
+// $channel = 'test_ch';
+
+// $message = [
+
+// 	'a' => 1,
+
+// 	'b' => 2,
+
+// 	'c' => 3
+	
+// ];
+
+// $res = $redis->publish($channel, json_encode($message));
+
+// var_dump($res);
+
+// $data = $redis->subscribe([$channel]); // 消息是阻塞的,一般消息订阅不建议用redis的,建议使用kafka的消息队列来做
+
+// var_dump($data);
+
+
+
+/********************************* 实际应用场景.[秒杀] ***********************************/
+
+
+// https://my.oschina.net/u/1168056/blog/1788741
