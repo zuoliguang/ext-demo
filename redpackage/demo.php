@@ -8,7 +8,7 @@
  * @Author: zuoliguang
  * @Date:   2018-09-29 08:45:30
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-29 17:28:21
+ * @Last Modified time: 2018-09-29 17:32:03
  */
 
 /**
@@ -81,41 +81,7 @@ echo json_encode($m);
 
 // 实际在生成红包的时候还可以具体划分出部分来作为基数平均部分,具体看自己需求及方案定性
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 接下来是redis存储方案
 
 
 
