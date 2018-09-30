@@ -6,7 +6,7 @@
  * @Author: zuoliguang
  * @Date:   2018-09-30 09:42:10
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-30 10:09:48
+ * @Last Modified time: 2018-09-30 10:15:29
  */
 
 // 报错机制
@@ -44,7 +44,7 @@ $data = $redis->lRange($redpackage_key, 0, -1);
 
 if (empty($data)) {
 	
-	echo "红包已经抢完了";
+	echo "速度太慢了,红包已经抢完了";
 
 	die();
 }
@@ -52,6 +52,7 @@ if (empty($data)) {
 // 这里可以对用户参数做一下其他的限制
 
 $uid = $_GET['uid'] ?: ""; 
+// $uid = time(); 
 
 if (empty($uid)) {
 
