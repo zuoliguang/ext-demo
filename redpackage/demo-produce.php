@@ -8,8 +8,14 @@
  * @Author: zuoliguang
  * @Date:   2018-09-29 08:45:30
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-29 17:32:03
+ * @Last Modified time: 2018-09-30 09:47:21
  */
+
+// 报错机制
+
+// error_reporting(E_ALL ^ E_DEPRECATED);
+
+// ini_set('display_errors', 1);
 
 /**
  * 业务需求描述 
@@ -59,6 +65,8 @@ echo json_encode($m);*/
 
 $base_avg = (int) floor( $M / ( $N + 1 ) ); // 红包基数,每个红包会在这个基数上增加
 
+// $base_avg = 200; // 也可以这样指定基数操作
+
 $LM = $M - ( $base_avg * $N ); // 该部分才是要拆分的随机部分
 
 for ($i = 0; $i < $N-1; $i++) { 
@@ -77,15 +85,42 @@ array_walk($m, function(&$val, $k) use ($base_avg){
 	$val += $base_avg;
 });
 
-echo json_encode($m);
+// echo json_encode($m);
 
 // 实际在生成红包的时候还可以具体划分出部分来作为基数平均部分,具体看自己需求及方案定性
 
 // 接下来是redis存储方案
 
+require_once '../redis/Redis_model.php';
 
+$config = [
+	
+	'host' => '127.0.0.1',
 
+	'port' => 6379,
 
+	'auth' => 'redpackage' // 红包
+];
 
+$redis = Redis_model::getInstance($config, ['db_id' => 0]);
 
+// 将红包份额添加到redis保存
+
+$redpackage_key = 'test_redpackage_list'; // 红包key
+
+$len = $redis->lLen($redpackage_key);
+
+if (intval($len) > 0) {
+	
+	echo "缓存红包已存在";
+
+	die();
+}
+
+foreach ($m as $fee) {
+	
+	$redis->rPush($redpackage_key, $fee);
+}
+
+echo '缓存红包加好了';
 

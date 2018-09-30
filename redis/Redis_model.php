@@ -12,7 +12,7 @@
  * @Author: zuoliguang
  * @Date:   2018-09-29 08:46:51
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-29 16:15:54
+ * @Last Modified time: 2018-09-30 09:15:27
  */
 
 class Redis_model
@@ -465,7 +465,7 @@ class Redis_model
      * @param unknown $key
      * @param unknown $start
      * @param unknown $end
-     * @return 删除成员的数量。
+     * @return 删除成员的数量
      */
     public function zRemRangeByScore($key, $start, $end)
     {
@@ -652,7 +652,6 @@ class Redis_model
         return $this->redis->setex($key, $expire, $value);
     }
      
-     
     /**
      * 设置一个key,如果key存在,不做任何操作.
      * 
@@ -688,6 +687,7 @@ class Redis_model
      
     /**
      * 求2个集合的差集
+     * 
      * @param unknown $key1
      * @param unknown $key2
      */
@@ -698,6 +698,7 @@ class Redis_model
      
     /**
      * 添加集合。由于版本问题，扩展不支持批量添加。这里做了封装
+     * 
      * @param unknown $key
      * @param string|array $value
      */
@@ -910,13 +911,6 @@ class Redis_model
             }
         }
     }
-     
-    /** 这里不关闭连接，因为session写入会在所有对象销毁之后。
-    public function __destruct()
-    {
-        return $this->redis->close();
-    }
-    **/
 
     /**
      * 返回当前数据库key数量
@@ -950,17 +944,26 @@ class Redis_model
     {
         return $this->auth;
     }
-     
+    
+    /**
+     * 返回当前host
+     */
     public function getHost()
     {
         return $this->host;
     }
-     
+    
+    /**
+     * 返回当前端口
+     */
     public function getPort()
     {
         return $this->port;
     }
-     
+    
+    /**
+     * 返回当前配置
+     */
     public function getConnInfo()
     {
         return [
@@ -972,6 +975,12 @@ class Redis_model
             'auth'=>$this->auth
         ];
     }
+
+    public function auth($auth)
+    {
+        return $this->redis->auth($auth);
+    }
+
     /*********************事务的相关方法************************/
      
     /**
@@ -1041,13 +1050,9 @@ class Redis_model
     {
         return $this->redis->ping();
     }
-     
-    public function auth($auth)
-    {
-        return $this->redis->auth($auth);
-    }
+    
     /*********************自定义的方法,用于简化操作************************/
-     
+    
     /**
      * 得到一组的ID号
      * 
@@ -1096,11 +1101,9 @@ class Redis_model
         }
 
         $key = md5($msg);
-         
-        //如果消息已经存在，删除旧消息，已当前消息为准
-        //echo $n=$this->lRem($lkey, 0, $key)."\n";
         
         //重新设置新消息
+        
         $this->lPush($lkey, $key);
 
         $this->setex($key, 3600, $msg); // 默认一小时存储时间
