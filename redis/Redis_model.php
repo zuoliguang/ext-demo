@@ -12,7 +12,7 @@
  * @Author: zuoliguang
  * @Date:   2018-09-29 08:46:51
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-30 09:15:27
+ * @Last Modified time: 2018-10-08 11:21:53
  */
 
 class Redis_model
@@ -109,7 +109,7 @@ class Redis_model
 
             static::$_instance[$k]->close();
 
-            static::$_instance[$k] = new self($config,$attr);
+            static::$_instance[$k] = new self($config, $attr);
 
             static::$_instance[$k]->k = $k;
 

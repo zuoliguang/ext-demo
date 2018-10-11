@@ -4,7 +4,7 @@
  * @Author: zuoliguang
  * @Date:   2018-09-27 14:23:04
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-27 15:40:42
+ * @Last Modified time: 2018-10-08 17:20:25
  */
 
 require_once './Kafka.php';
@@ -17,23 +17,23 @@ $topic = "my_test_topic";
 
 // ------------------设置信息
 
-// $start = microtime();
+$start = microtime();
 
-// for ($i=1; $i <= 100; $i++) { 
+for ($i=1; $i <= 100; $i++) { 
 
-// 	$kafka->send($topic, ['data' => $i . ': hello kafka!']);
+	$kafka->send($topic, ['data' => $i . ': hello kafka!']);
 
-// }
+}
 
-// $end = microtime();
+$end = microtime();
 
-// $time = $end - $start;
+$time = $end - $start;
 
-// $avg = $time / 10;
+$avg = $time / 10;
 
-// echo "set over! <br/>";
+echo "set over! <br/>";
 
-// echo " totalTime : $time ms ; avg: $avg ms ;";
+echo " totalTime : $time ms ; avg: $avg ms ;";
 
 // // 测试结果 100 条信息保存 总时间 0.00065ms 平均时间 0.000065ms
 
