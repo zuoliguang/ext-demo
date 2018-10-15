@@ -6,7 +6,7 @@
  * @Author: zuoliguang
  * @Date:   2018-10-08 10:55:32
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-10-11 13:57:43
+ * @Last Modified time: 2018-10-12 09:25:50
  */
 
 // 报错机制
@@ -30,7 +30,7 @@ $config = [
 
 $e_name = 'test_rabbitmq'; //交换机名
 
-$q_name = 'test_rabbitmq_mq'; //队列名
+$q_name = 'test_rabbitmq_pueue'; //队列名
 
 //创建连接和channel
 $conn = new AMQPConnection($config);
